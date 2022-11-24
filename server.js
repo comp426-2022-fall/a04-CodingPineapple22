@@ -18,12 +18,10 @@ app.get('/app/roll/', (req,res,next) => {res.setHeader('Content-Type', 'applicat
 	res.status(200).send(roll(6,2,1)); });
 
 app.get('/app/roll/', (req,res,next) => { 
-	if(req.body.sides){ let sides = parseInt(req.body.sides);}
-	else{ let sides = 6;}
-	if(req.body.dice) {let dice = parseInt(req.body.sides);}
-	else{let dice = 2;}
-	if(req.body.rolls){ let rolls = parseInt(req.body.rolls);}
-	else{let rolls = 1;}
+	let sides = parseInt(req.body.sides);
+	let dice = parseInt(req.body.dice);
+	let rolls = parseInt(req.body.rolls);
+	res.setStatus('Content-Type', 'application/json');
 	res.status(200).send(roll(sides, dice, rolls)); });
 
 app.get('/app/roll/:sides/', (req, res) => { 
