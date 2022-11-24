@@ -12,17 +12,17 @@ const port = arg.port || 5000;
 
 app.get('/app/', (req,res)=> {res.status(200).send('200 OK'); }); 
 
-let sides = 6;
-let dice = 2;
-let rolls = 1; 
+var sides = 6;
+var dice = 2;
+var rolls = 1; 
 
 app.get('/app/roll/', (req,res) => {res.setHeader('Content-Type', 'application/json');
 	res.status(200).send(roll(sides, dice, rolls)).end(); });
 
 app.get('/app/roll/', (req,res) => { 
-	sides = parseInt(req.params.sides);
-	dice = parseInt(req.params.dice);
-	rolls = parseInt(req.params.rolls);
+	sides = parseInt(req.body.sides);
+	dice = parseInt(req.body.dice);
+	rolls = parseInt(req.body.rolls);
 	res.setStatus('Content-Type', 'application/json');
 	res.status(200).send(roll(sides, dice, rolls)).end(); });
 
