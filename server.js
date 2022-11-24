@@ -20,9 +20,9 @@ app.get('/app/roll/', (req,res) => {res.setHeader('Content-Type', 'application/j
 	res.status(200).send(roll(sides, dice, rolls)).end(); });
 
 app.get('/app/roll/', (req,res) => { 
-	sides = parseInt(req.body.sides);
-	dice = parseInt(req.body.dice);
-	rolls = parseInt(req.body.rolls);
+	sides = parseInt(req.params.sides);
+	dice = parseInt(req.params.dice);
+	rolls = parseInt(req.params.rolls);
 	res.setStatus('Content-Type', 'application/json');
 	res.status(200).send(roll(sides, dice, rolls)).end(); });
 
