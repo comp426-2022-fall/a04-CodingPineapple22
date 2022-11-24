@@ -4,12 +4,14 @@
   "description": "This assignment will help you stand up a web API using Express and the module that you produced for a03.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node server.js --port=5555"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/comp426-2022-fall/a04-CodingPineapple22.git"
   },
+  "keywords": ["api"],
   "author": "CodingPineapple22",
   "license": "GPL-3.0-or-later",
   "bugs": {
