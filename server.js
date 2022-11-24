@@ -1,50 +1,45 @@
 #!/usr/bin/env node
-import parseArgs from 'minimist';
+import minimist from 'minimist';
 import express from 'express';
 import { roll } from "./lib/roll.js";
 
-const arg = parseArgs(process.argv);
+const arg = minimist(process.argv.slice(2));
 const app = express();
-app.use(express.json());
 app.use(express.urlencoded({extended:true})); 
 
-var port = null;
-if(arg.port){port = arg.port;}
-else{port = 5000;}
+const port = arg.port || 5000; 
 
 app.get('/app/', (req,res)=> {res.status(200).send('200 OK'); }); 
 
+const sides = 6;
+const dice = 2;
+const rolls = 1; 
+
 app.get('/app/roll/', (req,res,next) => {res.setHeader('Content-Type', 'application/json');
-	res.status(200).send(roll(6,2,1)); });
+	res.status(200).send(roll(sides, dice, rolls)); });
 
 app.get('/app/roll/', (req,res,next) => { 
-	let sides = parseInt(req.body.sides);
-	let dice = parseInt(req.body.dice);
-	let rolls = parseInt(req.body.rolls);
+	sides = parseInt(req.body.sides);
+	dice = parseInt(req.body.dice);
+	rolls = parseInt(req.body.rolls);
 	res.setStatus('Content-Type', 'application/json');
 	res.status(200).send(roll(sides, dice, rolls)); });
 
 app.get('/app/roll/:sides/', (req, res) => { 
-	if(req.params.sides){ let sides = parseInt(req.params.sides);}
-	else{let sides = 6;}
+	sides = parseInt(req.params.sides);
 	res.setHeader('Content-Type','application/json');
 	res.status(200).send(roll(sides,2,1)); });
 
 app.get('/app/roll/:sides/:dice/', (req,res) => {
-	if(req.params.sides){ let sides = parseInt(req.params.sides);}
-	else{let sides = 6;}
-	if(req.params.dice){ let dice = parseInt(req.params.dice);}
-	else{let dice = 2;}
+       sides = parseInt(req.params.sides);
+       dice = parseInt(req.params.dice);
 	res.setHeader('Content-Type', 'application/json');
 	res.status(200).send(roll(sides,dice,1)); });
 
 app.get('/app/roll/:sides/:dice/:rolls/', (req, res, next) => {
-	if(req.params.sides) { let sides = parseInt(req.params.sides);}
-	else{ let sides = 6;}
-	if(req.params.dice){ let dice = parseInt(req.params.dice); }
-	else{ let dice = 2;}
-	if(req.params.rolls){let rolls = parseInt(req.params.dice);}
-	else{let rolls = 1;}
+	sides = parseInt(req.params.sides);
+        dice = parseInt(req.params.dice);
+	rolls = parseInt(req.params.dice);
 	res.setHeader('Content-Type', 'application/json'); 
 	res.status(200).send(roll(sides, dice, rolls)); });
 
