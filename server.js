@@ -40,7 +40,7 @@ app.get('/app/roll/:sides/:dice/', (req,res) => {
 app.get('/app/roll/:sides/:dice/:rolls/', (req, res, next) => {
 	sides = parseInt(req.params.sides);
         dice = parseInt(req.params.dice);
-	rolls = parseInt(req.params.dice);
+	rolls = parseInt(req.params.rolls);
 	res.setHeader('Content-Type', 'application/json'); 
 	res.status(200).send(roll(sides, dice, rolls)).end(); });
 
